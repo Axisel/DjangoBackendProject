@@ -2,6 +2,9 @@ from django.urls import path
 from django.conf.urls.static import static
 from django.conf import settings
 from . import views
+
+#The urlpatterns variable is a list of all the urls that the app can handle.
+# And the views that will be called when the user access them.
 urlpatterns = [
     path('', views.index, name='index'),
     path('new-quiz', views.new_quiz, name='form'),
@@ -12,7 +15,3 @@ urlpatterns = [
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
-# <div class="container-btn">
-# <a href="new-quiz" class="btn btn-solid"><span>Create my quiz !</span><i class="fas fa-arrow-right"></i></a>
-# </div>

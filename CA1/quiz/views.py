@@ -7,7 +7,8 @@ from django.views.generic import FormView
 from .models import Quiz, Question, Choice
 from .forms import QuizForm, QuestionForm, ChoiceForm
 
-
+#This file contains the views of the app. It defines the functions that will be called when a user access a specific url.
+#The index function is called when the user access the home page. It loads the index.html template and pass the list of all the quizzes to it.
 def index(request):
     template = loader.get_template('index.html')
     context = {
@@ -15,7 +16,8 @@ def index(request):
     }
     return HttpResponse(template.render(context, request))
 
-
+#This quiz function is called when the user access a specific quiz.
+# It loads the quiz.html template and pass the quiz and the questions / choices that are related to it.
 def quiz(request, quizId):
     template = loader.get_template('quiz.html')
     questions = Question.objects.filter(quiz__id=quizId)
@@ -29,7 +31,9 @@ def quiz(request, quizId):
     }
     return HttpResponse(template.render(context, request))
 
-
+# This function is called when the user want to edit a quiz.
+# It loads the edit.html template and pass the quiz and the questions / choices that are related to it
+# so that the forms is pre-filled with them.
 def quizEditView(request, quizId):
     quiz = get_object_or_404(Quiz, pk=quizId)
     questions = Question.objects.filter(quiz__id=quizId)
@@ -43,23 +47,23 @@ def quizEditView(request, quizId):
     }
     return render(request, 'edit.html', context)
 
-
+#This function is called when the user click the button to validate the edit of a quiz.
+#It updates the quiz and the questions / choices that are related to it.
 def updateQuiz(request, quizId):
     quiz = get_object_or_404(Quiz, pk=quizId)
     questions = Question.objects.filter(quiz_id=quizId)
-    qname = request.POST.getlist('question_name')
-    cname = request.POST.getlist('choice')
 
-    print("Update request : " + str(request.POST))
+    qname = request.POST.getlist('question_name') #This line gets the text in the form of all the questions.
+    cname = request.POST.getlist('choice')        #This line gets the text in the forms of all the choices.
 
     quizname = request.POST['Quizname']
     quizdescription = request.POST.get('Quizdescription')
     quiz.name = quizname
     quiz.description = quizdescription
+
     choicenb = 0
     questionnb = 0
     for question in questions:
-
         for choice in Choice.objects.filter(question__id=question.id):
             choice.choice_text = cname[choicenb]
             choice.save()
@@ -71,9 +75,10 @@ def updateQuiz(request, quizId):
 
     return HttpResponseRedirect(reverse('quiz', args=(quizId,)))
 
-
+#This function is called when the user click the button to delete a quiz.
+#It deletes the quiz and the questions / choices that are related to it.
+#It then redirects the user to the home page.
 def deleteQuiz(request, quizId):
-    print("Delete request : " + str(request.POST))
     quiz = get_object_or_404(Quiz, pk=quizId)
     questions = Question.objects.filter(quiz__id=quizId)
     for i in range(len(questions)):
@@ -83,7 +88,8 @@ def deleteQuiz(request, quizId):
     quiz.delete()
     return HttpResponseRedirect(reverse('index'))
 
-
+#The new_quiz function is called when the user want to create a new quiz.
+# The functioning of this function is explained in the comments.
 def new_quiz(request):
      # if this is a POST request we need to process the form data
      if request.method == 'POST':

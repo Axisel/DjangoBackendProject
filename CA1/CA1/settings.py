@@ -123,6 +123,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
+#This variable is used to store the static files, for example the css files.
 STATIC_URL = 'static/'
 
 # Default primary key field type
@@ -130,6 +131,7 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+#These two variables are used to store the uploaded images.
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 MEDIA_URL = '/media/'
