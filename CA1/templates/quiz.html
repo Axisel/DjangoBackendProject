@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load template_filters %}
+<body>
+<section>
+    <div>
+        <h1>{{ quiz.name }}</h1>
+        {% for question in quiz_questions %}
+            <h2>{{ question.question_text }}</h2>
+            {% for choice in choices|get_item:forloop.counter %}
+                <input type="radio" name="choice" id="choice{{ forloop.counter }}">
+                <label for="choice{{ forloop.counter }}">{{ forloop.counter }}. {{ choice.choice_text }}</label>
+            {% endfor %}
+        {% endfor %}
+
+    </div>
+</section>
+</body>
+</html>

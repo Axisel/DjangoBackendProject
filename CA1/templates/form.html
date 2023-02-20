@@ -1,0 +1,24 @@
+<form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Submit">
+</form>
+
+<form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form2.as_p }}
+    <input type="submit" value="Submit" >
+</form>
+
+<form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form3.as_p }}
+    <input type="submit" value="Submit">
+</form>
+
+<a href="http://127.0.0.1:8000/">Go back home</a>
+
+
+{% if already %}
+chef tu t'es trompé quelque part la
+{% endif %}

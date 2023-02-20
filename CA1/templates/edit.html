@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load template_filters %}
+<body>
+<form action="{% url 'update_quiz' quizId=quiz.id %}" method="post">
+    {% csrf_token %}
+    <label for="name">Name of the quiz :</label>
+    <input id="name" type="text" name="Quizname" value="{{ quiz.name }}">
+    <label for="description">Description of the quiz :</label>
+    <input id="description" type="text" name="Quizdescription" value="{{ quiz.description }}">
+
+        {% for question in quiz_questions %}
+            <br>
+            <label for="question_name{{ forloop.counter }}">Text of the question</label>
+            <input id="question_name{{ forloop.counter }}" type="text" name="question_name" value="{{ question.question_text }}">
+
+            {% for choice in choices|get_item:forloop.counter %}
+                <label for="choice_name{{ forloop.counter }}">Choice N°{{ forloop.counter }}. {{ choice.choice_text }}</label>
+                <input id="choice_name{{ forloop.counter }}" type="text" name="choice" value="{{ choice.choice_text}}">
+
+            {% endfor %}
+        {% endfor %}
+    <br>
+    <input type="submit" value="Validate changes">
+    <button formaction="{% url 'delete_quiz' quizId=quiz.id %}">Delete the quiz</button>
+    <br>
+    <a href="http://127.0.0.1:8000/">Go back home</a>
+</form>
+</body>
+</html>
