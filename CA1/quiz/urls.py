@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
 from . import views
@@ -12,6 +12,9 @@ urlpatterns = [
     path('quiz/<int:quizId>/edit-quiz', views.quizEditView, name='edit_quiz'),
     path('quiz/<int:quizId>/update', views.updateQuiz, name='update_quiz'),
     path('quiz/<int:quizId>/delete', views.deleteQuiz, name='delete_quiz'),
+    path("accounts/", include("accounts.urls")),
+    path("accounts/", include("django.contrib.auth.urls")),
+
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

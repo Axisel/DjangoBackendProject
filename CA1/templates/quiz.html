@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 {% load template_filters %}
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'quiz/quiz.css' %}">
+</head>
 <body>
 <section>
     <div>
@@ -8,7 +12,7 @@
         {% for question in quiz_questions %}
             <h2>{{ question.question_text }}</h2>
             {% for choice in choices|get_item:forloop.counter %}
-                <input type="radio" name="choice" id="choice{{ forloop.counter }}">
+                <input type="radio" name="choice" checked="checked" id="choice{{ forloop.counter }}">
                 <label for="choice{{ forloop.counter }}">{{ forloop.counter }}. {{ choice.choice_text }}</label>
             {% endfor %}
         {% endfor %}
