@@ -2,7 +2,7 @@
 <html lang="en">
 {% load template_filters %}
 <body>
-<form action="{% url 'update_quiz' quizId=quiz.id %}" method="post">
+<form action="{% url 'quiz:update_quiz' quizId=quiz.id %}" method="post">
     {% csrf_token %}
     <label for="name">Name of the quiz :</label>
     <input id="name" type="text" name="Quizname" value="{{ quiz.name }}">
@@ -22,7 +22,7 @@
         {% endfor %}
     <br>
     <input type="submit" value="Validate changes">
-    <button formaction="{% url 'delete_quiz' quizId=quiz.id %}">Delete the quiz</button>
+    <button formaction="{% url 'quiz:delete_quiz' quizId=quiz.id %}">Delete the quiz</button>
     <br>
     <a href="http://127.0.0.1:8000/">Go back home</a>
 </form>

@@ -5,6 +5,7 @@ from . import views
 
 #The urlpatterns variable is a list of all the urls that the app can handle.
 # And the views that will be called when the user access them.
+app_name = 'quiz'
 urlpatterns = [
     path('', views.index, name='index'),
     path('new-quiz', views.new_quiz, name='form'),

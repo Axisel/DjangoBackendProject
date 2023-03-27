@@ -39,7 +39,7 @@
 <div class="nav-toggle" id="nav-toggle-btn"><div class="bar-1"></div><div class="bar-2"></div><div class="bar-3"></div></div>
 
 <ul class="links-wrapper">
-<li><a class="btn btn-solid" id="btn-cta" onclick="window.location.href='{% url 'signup' %}'"><span>Sign up</span> <i class="fa-solid fa-chevron-right"></i></a></li>
+<li><a class="btn btn-solid" id="btn-cta" onclick="window.location.href='{% url 'quiz:accounts:signup' %}'"><span>Sign up</span> <i class="fa-solid fa-chevron-right"></i></a></li>
 </ul>
 </div>
 </div></nav>
@@ -55,11 +55,11 @@
             {% block content %}
             {% if user.is_authenticated %}
               <h2 class="text-shadow">Hi {{ user.username }}! How  are you ?</h2>
-              <button class="btn" onclick="window.location.href='{% url 'logout' %}'">Log Out</button>
-              <button class="btn" onclick="window.location.href='{% url 'password_reset' %}'">Reset Password</button>
+              <button class="btn" onclick="window.location.href='{% url 'quiz:logout' %}'">Log Out</button>
+              <button class="btn" onclick="window.location.href='{% url 'quiz:password_reset' %}'">Reset Password</button>
             {% else %}
               <h2 class="text-shadow">You are not logged in</h2>
-              <button class="btn" onclick="window.location.href='{% url 'login' %}'">Log In</button>
+              <button class="btn" onclick="window.location.href='{% url 'quiz:login' %}'">Log In</button>
             {% endif %}
             {% endblock %}
 
@@ -72,7 +72,7 @@
 
         <div class="container-overlay"></div>
         <div class="container-btn slide-in-bottom">
-        <button class="btn" onclick="window.location.href='{% url 'form' %}'">Create a quiz
+        <button class="btn" onclick="window.location.href='{% url 'quiz:form' %}'">Create a quiz
         </button>
     </div>
 
@@ -91,8 +91,8 @@
                     <h3>{{ quiz.name }}</h3>
                     <p>{{ quiz.description }}</p>
 
-                    <a class="button-no-link" href="{% url 'quiz' quizId=quiz.id %}"><button>Try this quiz !</button></a>
-                    <a href="{% url 'edit_quiz' quizId=quiz.id %}"><button>Edit</button></a>
+                    <a class="button-no-link" href="{% url 'quiz:quiz' quizId=quiz.id %}"><button>Try this quiz !</button></a>
+                    <a href="{% url 'quiz:edit_quiz' quizId=quiz.id %}"><button>Edit</button></a>
                 </div>
             {% endfor %}
 
