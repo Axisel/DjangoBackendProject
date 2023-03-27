@@ -1,6 +1,10 @@
+from multiprocessing.connection import Client
+
 from django.contrib.auth.models import User
+from django.core import mail
 from django.test import TestCase
 from django.urls import reverse, reverse_lazy
+
 
 from quiz.models import Quiz, Question, Choice
 
@@ -151,6 +155,7 @@ class TemplateTest(TestCase):
 
 
 class ViewTest(TestCase):
+
     def test_viewIndex(self):
         response = self.client.get(reverse('quiz:index'))
         self.assertEqual(response.status_code, 200)
@@ -182,8 +187,6 @@ class ViewTest(TestCase):
         response = self.client.post(reverse('quiz:update_quiz', args=(2,)),  {'Quizname': 'Quiz 1 updated', 'Quizdescription': 'Description 1 updated'})
         self.assertEqual(response.status_code, 404)
 
-
-
     def test_viewQuizDelete(self):
         quizBastien = Quiz.objects.create(name="Quiz 1", description="Description 1", id=1)
         quizBastien.save()
@@ -212,4 +215,25 @@ class LoginTest(TestCase):
     def test_signupView(self):
         response = self.client.get(reverse('quiz:accounts:signup'))
         self.assertEqual(response.status_code, 200)
+
+class DatabaseTest(TestCase):
+    def setUp(self):
+        Quiz.objects.create(name='Test', description='Description 1')
+
+    def test_Quiz(self):
+        quiz = Quiz.objects.get(name='Test', description='Description 1')
+        self.assertEqual(quiz.name, 'Test')
+        self.assertEqual(quiz.description, 'Description 1')
+
+    def test_update_Quiz(self):
+        quiz = Quiz.objects.get(name='Test', description='Description 1')
+        quiz.description = 'Description updated'
+        quiz.save()
+        updated_quiz = Quiz.objects.get(name='Test')
+        self.assertEqual(updated_quiz.description, 'Description updated')
+
+    def test_delete_Quiz(self):
+        Quiz.objects.filter(name='Test').delete()
+        objs = Quiz.objects.filter(name='Test')
+        self.assertFalse(objs.exists())
 
