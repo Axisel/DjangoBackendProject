@@ -1,3 +1,4 @@
+import os
 from multiprocessing.connection import Client
 
 from django.contrib.auth.models import User
@@ -8,6 +9,8 @@ from django.urls import reverse, reverse_lazy
 
 from quiz.models import Quiz, Question, Choice
 
+# Setting up the settings_tests.py file.
+os.environ['DJANGO_SETTINGS_MODULE'] = 'quiz.settings_tests'
 
 # The three first tests are used to check if the models are created and read correctly.
 class QuizTestCase(TestCase):

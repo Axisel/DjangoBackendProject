@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bf108a72-9b82-4bbb-916b-d35695f1c9d0" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/CA1/settings_test.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/quiz/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/quiz/tests.py" afterDir="false" />
     </list>
@@ -20,8 +21,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="CSS File" />
-        <option value="Python Script" />
         <option value="HTML File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -169,7 +170,9 @@
       <workItem from="1679764332207" duration="110000" />
       <workItem from="1679765265354" duration="1018000" />
       <workItem from="1679868702884" duration="2686000" />
-      <workItem from="1679946741500" duration="3133000" />
+      <workItem from="1679946741500" duration="3692000" />
+      <workItem from="1679952520746" duration="14000" />
+      <workItem from="1680608937031" duration="2151000" />
     </task>
     <servers />
   </component>
